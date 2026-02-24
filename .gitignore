@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+build/
+
+# Environment variables
+.env*
+!.env.example
+
+# Testing
+coverage/
+*.test.js
+*.spec.js
+*.test.ts
+*.spec.ts
+*.test.tsx
+*.spec.tsx
+check-supabase-auth.js
+create-user.js
+check-user.js
+check-rls-policy.js
+check-rls-policy.sql
+update-rls-policy.sql
+check-users-rls-policy.js
+test-supabase.js
+
+# Playwright MCP
+.playwright-mcp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

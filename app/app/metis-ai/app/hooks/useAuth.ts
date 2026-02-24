@@ -4,7 +4,7 @@ import type { User } from '../types';
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // 检查用户是否已登录
