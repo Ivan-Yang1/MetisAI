@@ -52,3 +52,16 @@
 - **What was learned?**：Supabase的使用方法，包括客户端初始化、数据库查询、实时订阅、以及RLS策略配置
 - **Issues encountered?**：无
 
+### 2026-02-25 3:00 AM
+- **What was done?**：尝试使用Supabase CLI配置项目，但由于需要手动在控制台创建项目而阻塞
+- **What was learned?**：Supabase CLI的基本使用方法，但项目创建和认证配置需要在Supabase控制台手动完成
+- **Issues encountered?**：需要在Supabase控制台手动创建项目和配置认证
+
+🚫 **任务阻塞**：需要在Supabase控制台手动完成以下操作：
+1. 访问 [Supabase控制台](https://supabase.com/dashboard) 创建项目
+2. 配置数据库
+3. 获取项目的URL和匿名密钥（用于.env.local文件）
+4. 配置认证方式（邮箱/密码登录）
+5. 执行SQL迁移脚本（可以通过SQL编辑器执行）
+6. 验证RLS策略是否正常工作
+
