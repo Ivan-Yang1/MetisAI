@@ -11,7 +11,7 @@
 
 | Phase | Status | Description |
 |-------|--------|-------------|
-| 1. 基础设施搭建 | `pending` | 创建项目结构，安装依赖，配置环境变量，检查Git仓库状态 |
+| 1. 基础设施搭建 | `completed` | 创建项目结构，安装依赖，配置环境变量，检查Git仓库状态 |
 | 2. 数据库与认证 | `pending` | 创建Supabase项目，设计数据模型，配置认证 |
 | 3. 核心API开发 | `pending` | 开发基础API路由，实现数据库操作，配置认证中间件 |
 | 4. 前端核心功能 | `pending` | 创建登录页面，仪表盘，基础项目管理功能 |
@@ -28,11 +28,11 @@
 ### Phase 1: 基础设施搭建
 | Task | Status | Description | Time Estimate |
 |------|--------|-------------|---------------|
-| 1.1 创建Next.js项目 | `pending` | 使用`npx create-next-app`创建项目，配置TypeScript和Tailwind CSS | 1 hour |
-| 1.2 安装依赖 | `pending` | 安装必要的依赖包（Supabase, Zustand, 等） | 1 hour |
-| 1.3 配置环境变量 | `pending` | 创建.env.local文件，配置基础环境变量 | 30 minutes |
-| 1.4 项目结构搭建 | `pending` | 创建合理的项目目录结构，配置基础文件 | 1.5 hours |
-| 1.5 初始化Git仓库 | `pending` | 检查Git仓库初始化状态，创建.gitignore文件，检查连接GitHub远程仓库状态 | 30 minutes |
+| 1.1 创建Next.js项目 | `completed` | 使用`npx create-next-app`创建项目，配置TypeScript和Tailwind CSS | 1 hour |
+| 1.2 安装依赖 | `completed` | 安装必要的依赖包（Supabase, Zustand, 等） | 1 hour |
+| 1.3 配置环境变量 | `completed` | 创建.env.local文件，配置基础环境变量 | 30 minutes |
+| 1.4 项目结构搭建 | `completed` | 创建合理的项目目录结构，配置基础文件 | 1.5 hours |
+| 1.5 初始化Git仓库 | `completed` | 检查Git仓库初始化状态，创建.gitignore文件，检查连接GitHub远程仓库状态 | 30 minutes |
 
 ### Phase 2: 数据库与认证
 | Task | Status | Description | Time Estimate |
