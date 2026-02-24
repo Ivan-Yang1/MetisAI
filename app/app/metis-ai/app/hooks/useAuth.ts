@@ -81,6 +81,7 @@ export function useAuth() {
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
+
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,

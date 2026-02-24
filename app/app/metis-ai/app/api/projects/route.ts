@@ -37,8 +37,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-try {
+  try {
     const { name, description, tech_stack } = await request.json();
+
     const { data: { user } } = await supabase.auth.getUser(request.headers.get('authorization')?.substring(7));
 
     if (!user) {
