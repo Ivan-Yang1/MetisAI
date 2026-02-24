@@ -14,7 +14,7 @@
 | 1. 基础设施搭建 | `completed` | 创建项目结构，安装依赖，配置环境变量，检查Git仓库状态 |
 | 2. 数据库与认证 | `completed` | 在Supabase控制台手动创建项目，配置认证，执行SQL迁移 |
 | 3. 核心API开发 | `completed` | 开发基础API路由，实现数据库操作，配置认证中间件 |
-| 4. 前端核心功能 | `in_progress` | 创建登录页面，仪表盘，基础项目管理功能 |
+| 4. 前端核心功能 | `completed` | 创建登录页面，仪表盘，基础项目管理功能 |
 | 5. AI功能集成 | `pending` | 配置MetaGPT，封装API，实现AI对话界面 |
 | 6. 沙箱与预览 | `pending` | 集成Sandpack，实现沙箱预览界面 |
 | 7. 核心功能验证 | `pending` | 配置Vercel，执行核心功能测试 |
