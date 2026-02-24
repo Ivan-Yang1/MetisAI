@@ -12,7 +12,7 @@
 | Phase | Status | Description |
 |-------|--------|-------------|
 | 1. 基础设施搭建 | `completed` | 创建项目结构，安装依赖，配置环境变量，检查Git仓库状态 |
-| 2. 数据库与认证 | `pending` | 创建Supabase项目，设计数据模型，配置认证 |
+| 2. 数据库与认证 | `in_progress` | 创建Supabase项目，设计数据模型，配置认证 |
 | 3. 核心API开发 | `pending` | 开发基础API路由，实现数据库操作，配置认证中间件 |
 | 4. 前端核心功能 | `pending` | 创建登录页面，仪表盘，基础项目管理功能 |
 | 5. AI功能集成 | `pending` | 配置MetaGPT，封装API，实现AI对话界面 |
@@ -37,10 +37,10 @@
 ### Phase 2: 数据库与认证
 | Task | Status | Description | Time Estimate |
 |------|--------|-------------|---------------|
-| 2.1 创建Supabase项目 | `pending` | 在Supabase控制台创建项目，配置数据库 | 30 minutes |
-| 2.2 设计数据模型 | `pending` | 设计用户、项目、文件、对话等核心数据模型 | 1.5 hours |
-| 2.3 执行SQL迁移 | `pending` | 编写SQL迁移脚本，创建表结构和关系 | 2 hours |
-| 2.4 配置认证 | `pending` | 配置Supabase认证，设置JWT密钥和RLS策略 | 1 hour |
+| 2.1 创建Supabase项目 | `in_progress` | 在Supabase控制台创建项目，配置数据库 | 30 minutes |
+| 2.2 设计数据模型 | `completed` | 设计用户、项目、文件、对话等核心数据模型 | 1.5 hours |
+| 2.3 执行SQL迁移 | `completed` | 编写SQL迁移脚本，创建表结构和关系 | 2 hours |
+| 2.4 配置认证 | `completed` | 配置Supabase认证，设置JWT密钥和RLS策略 | 1 hour |
 
 ### Phase 3: 核心API开发
 | Task | Status | Description | Time Estimate |
