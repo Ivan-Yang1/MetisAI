@@ -70,10 +70,10 @@
 | Task | Status | Description | Time Estimate |
 |------|--------|-------------|---------------|
 | 6.1 集成Sandpack | `completed` | 安装和配置Sandpack库 | 1 hour |
-| 6.2 沙箱预览界面 | `pending` | 实现右侧沙箱预览界面 | 2.5 hours |
-| 6.3 文件同步 | `pending` | 实现MetaGPT生成代码到Sandpack沙箱的实时同步机制，包括文件结构更新和代码内容同步 | 2 hours |
-| 6.4 MetaGPT-沙箱集成 | `pending` | 实现MetaGPT生成代码到沙箱的自动同步机制 | 2 hours |
-| 6.5 代码反馈循环 | `pending` | 实现沙箱代码修改后反馈给MetaGPT的机制 | 1.5 hours |
+| 6.2 沙箱预览界面 | `completed` | 实现右侧沙箱预览界面 | 2.5 hours |
+| 6.3 文件同步 | `completed` | 实现MetaGPT生成代码到Sandpack沙箱的实时同步机制，包括文件结构更新和代码内容同步 | 2 hours |
+| 6.4 MetaGPT-沙箱集成 | `completed` | 实现MetaGPT生成代码到沙箱的自动同步机制 | 2 hours |
+| 6.5 代码反馈循环 | `completed` | 实现沙箱代码修改后反馈给MetaGPT的机制 | 1.5 hours |
 
 ### Phase 7: 核心功能验证
 | Task | Status | Description | Time Estimate |

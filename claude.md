@@ -221,7 +221,7 @@ git push origin master
 
 1. **One task per session** - 专注于完成一个任务
 2. **Test before marking complete** - 所有步骤必须通过
-3. **Browser testing for UI changes** - 新建或大幅修改页面必须在浏览器测试
+3. **Browser testing for UI changes** - 新建或大幅修改页面必须用playwrightMCP在浏览器测试
 4. **Document in progress.md** - 帮助后续 agent 理解你的工作
 5. **One commit per task** - 所有更改（代码、progress.md、task_plan.md、findings.md）必须在同一个 commit 中提交
 6. **Never remove tasks** - 只将未完成任务标记为完成
