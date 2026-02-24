@@ -20,8 +20,8 @@
 | 5. AI功能集成 | `completed` | `tested` | 配置MetaGPT，封装API，实现AI对话界面 |
 | 6. 沙箱与预览 | `completed` | `tested` | 集成Sandpack，实现沙箱预览界面 |
 | 7. 核心功能验证 | `completed` | `tested` | 配置Vercel，执行核心功能测试 |
-| 8. 优化提升阶段 | `pending` | `untested` | 性能优化，用户体验改进，高级功能增强 |
-| 9. 最终验证与交付 | `pending` | `untested` | 最终功能测试，错误处理，文档更新 |
+| 8. 优化提升阶段 | `completed` | `tested` | 性能优化，用户体验改进，高级功能增强 |
+| 9. 最终验证与交付 | `completed` | `tested` | 最终功能测试，错误处理，文档更新 |
 
 ## Detailed Tasks
 
@@ -87,19 +87,19 @@
 ### Phase 8: 优化提升阶段
 | Task | Status | Test Status | Description | Time Estimate |
 |------|--------|-------------|-------------|---------------|
-| 8.1 性能优化 | `pending` | `untested` | 优化前端性能，减少加载时间 | 1.5 hours |
-| 8.2 交互优化 | `pending` | `untested` | 优化沙箱界面的用户体验 | 1.5 hours |
-| 8.3 自动化测试 | `pending` | `untested` | 实现自动化测试，持续运行 | 2 hours |
-| 8.4 高级功能增强 | `pending` | `untested` | 增强智能体管理功能，添加更多智能体类型 | 2 hours |
-| 8.5 响应式设计 | `pending` | `untested` | 优化移动端适配，提升跨设备体验 | 1 hour |
+| 8.1 性能优化 | `completed` | `tested` | 优化前端性能，减少加载时间 | 1.5 hours |
+| 8.2 交互优化 | `completed` | `tested` | 优化沙箱界面的用户体验 | 1.5 hours |
+| 8.3 自动化测试 | `completed` | `tested` | 实现自动化测试，持续运行 | 2 hours |
+| 8.4 高级功能增强 | `completed` | `tested` | 增强智能体管理功能，添加更多智能体类型 | 2 hours |
+| 8.5 响应式设计 | `completed` | `tested` | 优化移动端适配，提升跨设备体验 | 1 hour |
 
 ### Phase 9: 最终验证与交付
 | Task | Status | Test Status | Description | Time Estimate |
 |------|--------|-------------|-------------|---------------|
-| 9.1 最终功能测试 | `pending` | `untested` | 执行完整的功能测试，确保所有功能正常 | 2 hours |
-| 9.2 错误处理 | `pending` | `untested` | 完善错误处理机制，提高系统稳定性 | 1.5 hours |
-| 9.3 文档更新 | `pending` | `untested` | 更新README文档，编写使用指南 | 1 hour |
-| 9.4 准备演示 | `pending` | `untested` | 准备项目演示，记录已知问题和限制 | 1 hour |
+| 9.1 最终功能测试 | `completed` | `tested` | 执行完整的功能测试，确保所有功能正常 | 2 hours |
+| 9.2 错误处理 | `completed` | `tested` | 完善错误处理机制，提高系统稳定性 | 1.5 hours |
+| 9.3 文档更新 | `completed` | `tested` | 更新README文档，编写使用指南 | 1 hour |
+| 9.4 准备演示 | `completed` | `tested` | 准备项目演示，记录已知问题和限制 | 1 hour |
 
 
 
