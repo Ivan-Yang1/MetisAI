@@ -13,7 +13,7 @@
 |-------|--------|-------------|
 | 1. 基础设施搭建 | `completed` | 创建项目结构，安装依赖，配置环境变量，检查Git仓库状态 |
 | 2. 数据库与认证 | `completed` | 在Supabase控制台手动创建项目，配置认证，执行SQL迁移 |
-| 3. 核心API开发 | `pending` | 开发基础API路由，实现数据库操作，配置认证中间件 |
+| 3. 核心API开发 | `completed` | 开发基础API路由，实现数据库操作，配置认证中间件 |
 | 4. 前端核心功能 | `pending` | 创建登录页面，仪表盘，基础项目管理功能 |
 | 5. AI功能集成 | `pending` | 配置MetaGPT，封装API，实现AI对话界面 |
 | 6. 沙箱与预览 | `pending` | 集成Sandpack，实现沙箱预览界面 |
@@ -45,10 +45,10 @@
 ### Phase 3: 核心API开发
 | Task | Status | Description | Time Estimate |
 |------|--------|-------------|---------------|
-| 3.1 开发API路由 | `pending` | 创建Next.js API Routes，实现基础路由结构 | 1.5 hours |
-| 3.2 数据库操作 | `pending` | 实现数据库CRUD操作，处理数据持久化 | 2.5 hours |
-| 3.3 认证中间件 | `pending` | 实现用户认证和权限控制中间件 | 1.5 hours |
-| 3.4 API文档 | `pending` | 创建API文档，为前端开发提供参考 | 1 hour |
+| 3.1 开发API路由 | `completed` | 创建Next.js API Routes，实现基础路由结构 | 1.5 hours |
+| 3.2 数据库操作 | `completed` | 实现数据库CRUD操作，处理数据持久化 | 2.5 hours |
+| 3.3 认证中间件 | `completed` | 实现用户认证和权限控制中间件 | 1.5 hours |
+| 3.4 API文档 | `completed` | 创建API文档，为前端开发提供参考 | 1 hour |
 
 ### Phase 4: 前端核心功能
 | Task | Status | Description | Time Estimate |

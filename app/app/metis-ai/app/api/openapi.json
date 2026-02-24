@@ -1,0 +1,2353 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "MetisAI API",
+    "version": "1.0.0",
+    "description": "API for MetisAI - AI Code Generation Platform"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "User login",
+        "description": "Authenticate user with email and password",
+        "tags": ["Auth"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "User's email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "User's password"
+                  }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "session": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "summary": "User signup",
+        "description": "Create a new user account",
+        "tags": ["Auth"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "User's email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "User's password"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "User's name"
+                  }
+                },
+                "required": ["email", "password", "name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful signup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "User logout",
+        "description": "Logout current user",
+        "tags": ["Auth"],
+        "responses": {
+          "200": {
+            "description": "Successful logout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get current user",
+        "description": "Get current user information",
+        "tags": ["Users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "avatar_url": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user",
+        "description": "Update current user information",
+        "tags": ["Users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "avatar_url": {
+                    "type": "string"
+                  }
+
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "avatar_url": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+     "/projects": {
+      "get": {
+        "summary": "Get projects",
+        "description": "Get user's projects",
+        "tags": ["Projects"],
+
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,,
+            "schema": {
+              "type": "string"
+            },
+
+             "description": "Project ID"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "User's projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "tech_stack": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "post": {
+        "summary": "Create project",
+        "description": "Create a new project",
+        "tags": ["Projects"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                   "description": {
+                    "type": "string"
+                  },
+                   "tech_stack": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+
+                 "required": ["name"]
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Project created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "tech_stack": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+
+           "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+    "/projects/{id}": {
+      "get": {
+        "summary": "Get project",
+        "description": "Get project by ID",
+        "tags": ["Projects"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+             "description": "Project ID"
+          }
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Project information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "tech_stack": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+      "put": {
+        "summary": "Update project",
+        "description": "Update project by ID",
+        "tags": ["Projects"],
+
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+             "description": "Project ID"
+          }
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "tech_stack": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                   "status": {
+                    "type": "string"
+                  }
+
+                }
+              }
+            }
+          }
+        },
+
+         "responses": {
+          "200": {
+            "description": "Project updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "tech_stack": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "404": {
+            "description": "Project not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+      "delete": {
+        "summary": "Delete project",
+        "description": "Delete project by ID",
+        "tags": ["Projects"],
+
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+             "description": "Project ID"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Project deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Project not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+
+    "/files": {
+      "get": {
+        "summary": "Get files",
+        "description": "Get project's files",
+        "tags": ["Files"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+             "description": "Project ID"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Project's files",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "name": {
+                        "type": "string"
+                      },
+
+                      "path": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "type": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "post": {
+        "summary": "Create file",
+        "description": "Create a new file",
+        "tags": ["Files"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+
+                  "path": {
+                    "type": "string"
+                  },
+
+                  "content": {
+                    "type": "string"
+                  },
+
+                  "type": {
+                    "type": "string"
+                  },
+
+                  "project_id": {
+                    "type": "string"
+                  }
+
+                },
+
+                 "required": ["name", "path", "type", "project_id"]
+              }
+            }
+          }
+        },
+
+         "responses": {
+          "200": {
+            "description": "File created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "name": {
+                        "type": "string"
+                      },
+
+                      "path": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "type": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+     "/files/{id}": {
+      "get": {
+        "summary": "Get file",
+        "description": "Get file by ID",
+        "tags": ["Files"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+
+             "description": "File ID"
+          }
+        ],
+
+         "responses": {
+          "200": {
+            "description": "File information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "name": {
+                        "type": "string"
+                      },
+
+                      "path": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "type": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "File not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+      "put": {
+        "summary": "Update file",
+        "description": "Update file by ID",
+        "tags": ["Files"],
+
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+
+             "description": "File ID"
+          }
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+
+                  "path": {
+                    "type": "string"
+                  },
+
+                  "content": {
+                    "type": "string"
+                  },
+
+                  "type": {
+                    "type": "string"
+                  }
+
+                }
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "File updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "name": {
+                        "type": "string"
+                      },
+
+                      "path": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "type": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "404": {
+            "description": "File not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+      "delete": {
+        "summary": "Delete file",
+        "description": "Delete file by ID",
+        "tags": ["Files"],
+
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+
+             "description": "File ID"
+          }
+        ],
+
+         "responses": {
+          "200": {
+            "description": "File deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "File not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+
+    "/conversations": {
+      "get": {
+        "summary": "Get conversations",
+        "description": "Get user's conversations",
+        "tags": ["Conversations"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Project ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "User's conversations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "title": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "post": {
+        "summary": "Create conversation",
+        "description": "Create a new conversation",
+        "tags": ["Conversations"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+
+                  "project_id": {
+                    "type": "string"
+                  }
+
+                }
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Conversation created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "title": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+    "/conversations/{id}": {
+      "get": {
+        "summary": "Get conversation",
+        "description": "Get conversation by ID",
+        "tags": ["Conversations"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Conversation ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Conversation information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "title": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Conversation not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "put": {
+        "summary": "Update conversation",
+        "description": "Update conversation by ID",
+        "tags": ["Conversations"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Conversation ID"
+          }
+
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  }
+
+                }
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Conversation updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "title": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "404": {
+            "description": "Conversation not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "delete": {
+        "summary": "Delete conversation",
+        "description": "Delete conversation by ID",
+        "tags": ["Conversations"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Conversation ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Conversation deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Conversation not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+
+    "/messages": {
+      "get": {
+        "summary": "Get messages",
+        "description": "Get conversation's messages",
+        "tags": ["Messages"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "query",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Conversation ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Conversation's messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "role": {
+                        "type": "string"
+                      },
+
+                      "conversation_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "post": {
+        "summary": "Create message",
+        "description": "Create a new message",
+        "tags": ["Messages"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  },
+
+                  "role": {
+                    "type": "string"
+                  },
+
+                  "conversation_id": {
+                    "type": "string"
+                  }
+
+                },
+
+                 "required": ["content", "role", "conversation_id"]
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Message created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "role": {
+                        "type": "string"
+                      },
+
+                      "conversation_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+    "/messages/{id}": {
+      "get": {
+        "summary": "Get message",
+        "description": "Get message by ID",
+        "tags": ["Messages"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Message ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Message information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "role": {
+                        "type": "string"
+                      },
+
+                      "conversation_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Message not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "put": {
+        "summary": "Update message",
+        "description": "Update message by ID",
+        "tags": ["Messages"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Message ID"
+          }
+
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  }
+
+                }
+              }
+            }
+          }
+        },
+
+         "responses": {
+          "200": {
+            "description": "Message updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "content": {
+                        "type": "string"
+                      },
+
+                      "role": {
+                        "type": "string"
+                      },
+
+                      "conversation_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "404": {
+            "description": "Message not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "delete": {
+        "summary": "Delete message",
+        "description": "Delete message by ID",
+        "tags": ["Messages"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Message ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Message deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Message not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+    "/code-generation-tasks": {
+      "get": {
+        "summary": "Get code generation tasks",
+        "description": "Get user's code generation tasks",
+        "tags": ["Code Generation"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Project ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "User's code generation tasks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "prompt": {
+                        "type": "string"
+                      },
+
+                      "status": {
+                        "type": "string"
+                      },
+
+                      "result": {
+                        "type": "object"
+                      },
+
+                      "error": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "post": {
+        "summary": "Create code generation task",
+        "description": "Create a new code generation task",
+        "tags": ["Code Generation"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string"
+                  },
+
+                  "project_id": {
+                    "type": "string"
+                  }
+
+                },
+
+                 "required": ["prompt", "project_id"]
+              }
+            }
+          }
+        },
+
+         "responses": {
+          "200": {
+            "description": "Code generation task created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "prompt": {
+                        "type": "string"
+                      },
+
+                      "status": {
+                        "type": "string"
+                      },
+
+                      "result": {
+                        "type": "object"
+                      },
+
+                      "error": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+    "/code-generation-tasks/{id}": {
+      "get": {
+        "summary": "Get code generation task",
+        "description": "Get code generation task by ID",
+        "tags": ["Code Generation"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Code Generation Task ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Code generation task information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "prompt": {
+                        "type": "string"
+                      },
+
+                      "status": {
+                        "type": "string"
+                      },
+
+                      "result": {
+                        "type": "object"
+                      },
+
+                      "error": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Code generation task not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "put": {
+        "summary": "Update code generation task",
+        "description": "Update code generation task by ID",
+        "tags": ["Code Generation"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Code Generation Task ID"
+          }
+
+        ],
+
+         "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+
+                  "result": {
+                    "type": "object"
+                  },
+
+                  "error": {
+                    "type": "string"
+                  }
+
+                }
+              }
+            }
+          }
+        },
+
+         "responses": {
+          "200": {
+            "description": "Code generation task updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+
+                      "prompt": {
+                        "type": "string"
+                      },
+
+                      "status": {
+                        "type": "string"
+                      },
+
+                      "result": {
+                        "type": "object"
+                      },
+
+                      "error": {
+                        "type": "string"
+                      },
+
+                      "user_id": {
+                        "type": "string"
+                      },
+
+                      "project_id": {
+                        "type": "string"
+                      },
+
+                      "created_at": {
+                        "type": "string"
+                      },
+
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request"
+          },
+
+          "404": {
+            "description": "Code generation task not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+
+       "delete": {
+        "summary": "Delete code generation task",
+        "description": "Delete code generation task by ID",
+        "tags": ["Code Generation"],
+
+         "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
+         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+
+             "schema": {
+              "type": "string"
+            },
+
+             "description": "Code Generation Task ID"
+          }
+
+        ],
+
+         "responses": {
+          "200": {
+            "description": "Code generation task deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Code generation task not found"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+
+   "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication endpoints"
+    },
+    {
+      "name": "Users",
+      "description": "User management endpoints"
+    },
+    {
+      "name": "Projects",
+      "description": "Project management endpoints"
+    },
+    {
+      "name": "Files",
+      "description": "File management endpoints"
+    },
+    {
+      "name": "Conversations",
+      "description": "Conversation management endpoints"
+    },
+    {
+      "name": "Messages",
+      "description": "Message management endpoints"
+    },
+    {
+      "name": "Code Generation",
+      "description": "Code generation task endpoints"
+    }
+  ]
+}
