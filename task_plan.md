@@ -56,7 +56,7 @@
 | 4.1 创建登录页面 | `completed` | 实现用户登录和注册功能 | 1.5 hours |
 | 4.2 创建仪表盘 | `completed` | 实现项目列表和管理功能 | 2 hours |
 | 4.3 项目详情页面 | `completed` | 实现项目详情和文件管理功能 | 2 hours |
-| 4.4 基础UI组件 | `completed` | 创建可复用的UI组件库 | 1.5 hours |
+| 4.4 基础UI组件 | `completed` | 创建可复用的UI组件库（Button、Input、Card、Label） | 1.5 hours |
 
 ### Phase 5: AI功能集成
 | Task | Status | Description | Time Estimate |
