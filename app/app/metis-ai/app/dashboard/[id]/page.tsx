@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { Button } from '@/app/components/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/app/components/Card';
 import { AIDialogue } from '@/app/components/AIDialogue';
+import { AgentManagement } from '@/app/components/AgentManagement';
 
 export default function ProjectDetailPage() {
   const { user } = useAuth();
@@ -18,6 +19,7 @@ export default function ProjectDetailPage() {
   const [fileContent, setFileContent] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
+  const [selectedAgents, setSelectedAgents] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -141,6 +143,11 @@ export default function ProjectDetailPage() {
     }
   };
 
+  const handleAgentSelect = (agentIds: string[]) => {
+    setSelectedAgents(agentIds);
+    console.log('Selected agents:', agentIds);
+  };
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950">
@@ -199,7 +206,7 @@ export default function ProjectDetailPage() {
       {/* 主要内容 */}
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* 左侧面板：项目信息和文件树 */}
+          {/* 左侧面板：项目信息、文件树和智能体管理 */}
           <div className="lg:col-span-1 space-y-6">
             {/* 项目信息卡片 */}
             <Card>
@@ -248,6 +255,13 @@ export default function ProjectDetailPage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* 智能体管理卡片 */}
+            <AgentManagement
+              selectedAgents={selectedAgents}
+              onAgentSelect={handleAgentSelect}
+              className="h-full"
+            />
           </div>
 
           {/* 中间面板：AI 对话界面 */}

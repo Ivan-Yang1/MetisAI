@@ -15,7 +15,7 @@
 | 2. 数据库与认证 | `completed` | 在Supabase控制台手动创建项目，配置认证，执行SQL迁移 |
 | 3. 核心API开发 | `completed` | 开发基础API路由，实现数据库操作，配置认证中间件 |
 | 4. 前端核心功能 | `completed` | 创建登录页面，仪表盘，基础项目管理功能 |
-| 5. AI功能集成 | `in_progress` | 配置MetaGPT，封装API，实现AI对话界面 |
+| 5. AI功能集成 | `completed` | 配置MetaGPT，封装API，实现AI对话界面 |
 | 6. 沙箱与预览 | `pending` | 集成Sandpack，实现沙箱预览界面 |
 | 7. 核心功能验证 | `pending` | 配置Vercel，执行核心功能测试 |
 | 8. 优化提升阶段 | `pending` | 性能优化，用户体验改进，高级功能增强 |
@@ -64,7 +64,7 @@
 | 5.1 配置MetaGPT | `completed` | 安装MetaGPT（使用pip install metagpt），初始化配置文件（metagpt --init-config），配置API密钥和环境变量 | 2 hours |
 | 5.2 封装MetaGPT API | `completed` | 创建MetaGPT集成层，使用generate_repo函数封装API调用，支持代码生成和文件结构输出，为沙箱同步提供数据支持 | 2.5 hours |
 | 5.3 AI对话界面 | `completed` | 实现左侧AI对话界面，支持自然语言输入，将用户输入传递给MetaGPT | 2.5 hours |
-| 5.4 智能体管理 | `pending` | 实现智能体选择和管理功能，基于MetaGPT的Role和Action组件 | 1 hour |
+| 5.4 智能体管理 | `completed` | 实现智能体选择和管理功能，基于MetaGPT的Role和Action组件 | 1 hour |
 
 ### Phase 6: 沙箱与预览
 | Task | Status | Description | Time Estimate |
