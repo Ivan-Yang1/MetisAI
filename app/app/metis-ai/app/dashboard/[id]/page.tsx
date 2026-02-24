@@ -7,6 +7,7 @@ import { Button } from '@/app/components/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/app/components/Card';
 import { AIDialogue } from '@/app/components/AIDialogue';
 import { AgentManagement } from '@/app/components/AgentManagement';
+import { SandboxPreview } from '@/app/components/SandboxPreview';
 
 export default function ProjectDetailPage() {
   const { user } = useAuth();
@@ -20,6 +21,7 @@ export default function ProjectDetailPage() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [selectedAgents, setSelectedAgents] = useState<string[]>([]);
+  const [sandboxFiles, setSandboxFiles] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -52,6 +54,13 @@ export default function ProjectDetailPage() {
         if (filesResponse.ok) {
           const filesData = await filesResponse.json();
           setFiles(filesData);
+
+          // 将项目文件转换为沙箱文件格式
+          const sandboxFilesData: { [key: string]: string } = {};
+          filesData.forEach((file: any) => {
+            sandboxFilesData[`/${file.name}`] = file.content;
+          });
+          setSandboxFiles(sandboxFilesData);
         } else {
           console.error('获取项目文件失败');
         }
@@ -104,6 +113,15 @@ export default function ProjectDetailPage() {
       if (response.ok) {
         setEditing(false);
         alert('文件保存成功');
+
+        // 更新沙箱文件
+        const fileName = files.find((f) => f.id === selectedFile)?.name;
+        if (fileName) {
+          setSandboxFiles(prev => ({
+            ...prev,
+            [`/${fileName}`]: fileContent,
+          }));
+        }
       } else {
         console.error('保存文件失败');
       }
@@ -135,6 +153,12 @@ export default function ProjectDetailPage() {
         const newFile = await response.json();
         setFiles([...files, newFile]);
         alert('文件创建成功');
+
+        // 更新沙箱文件
+        setSandboxFiles(prev => ({
+          ...prev,
+          [`/${fileName}`]: '',
+        }));
       } else {
         console.error('创建文件失败');
       }
@@ -276,8 +300,9 @@ export default function ProjectDetailPage() {
             </Card>
           </div>
 
-          {/* 右侧面板：文件内容 */}
-          <div className="lg:col-span-2">
+          {/* 右侧面板：文件内容和沙箱预览 */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* 文件内容 */}
             {selectedFile ? (
               <Card>
                 <CardHeader className="flex justify-between items-center">
@@ -306,11 +331,11 @@ export default function ProjectDetailPage() {
                     <textarea
                       value={fileContent}
                       onChange={(e) => setFileContent(e.target.value)}
-                      className="w-full h-[600px] p-4 rounded-md border border-gray-300 bg-white text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-100 font-mono text-sm resize-none"
+                      className="w-full h-[300px] p-4 rounded-md border border-gray-300 bg-white text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-100 font-mono text-sm resize-none"
                       placeholder="文件内容"
                     />
                   ) : (
-                    <pre className="whitespace-pre-wrap break-all p-4 rounded-md bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono text-sm h-[600px] overflow-auto">
+                    <pre className="whitespace-pre-wrap break-all p-4 rounded-md bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono text-sm h-[300px] overflow-auto">
                       {fileContent || '文件内容为空'}
                     </pre>
                   )}
@@ -322,12 +347,15 @@ export default function ProjectDetailPage() {
                 </CardFooter>
               </Card>
             ) : (
-              <div className="flex h-[600px] items-center justify-center bg-gray-50 dark:bg-gray-950 rounded-md border-2 border-dashed border-gray-300 dark:border-gray-800">
+              <div className="flex h-[300px] items-center justify-center bg-gray-50 dark:bg-gray-950 rounded-md border-2 border-dashed border-gray-300 dark:border-gray-800">
                 <p className="text-gray-500 dark:text-gray-400 text-center">
                   请从左侧文件树中选择一个文件查看内容
                 </p>
               </div>
             )}
+
+            {/* 沙箱预览 */}
+            <SandboxPreview files={sandboxFiles} />
           </div>
         </div>
       </main>
