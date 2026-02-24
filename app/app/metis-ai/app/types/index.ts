@@ -59,8 +59,42 @@ export type CodeGenerationTask = {
   project_id: string;
   prompt: string;
   status: 'pending' | 'processing' | 'completed' | 'failed';
-  result?: any;
+  result?: GeneratedProject;
   error?: string;
   created_at: string;
   updated_at: string;
+};
+
+// AI 代码生成请求类型
+export type CodeGenerationRequest = {
+  prompt: string;
+  project_name?: string;
+  investment?: number;
+  n_round?: number;
+  code_review?: boolean;
+  run_tests?: boolean;
+  implement?: boolean;
+  project_id?: string;
+};
+
+// 生成的项目类型
+export type GeneratedProject = {
+  name: string;
+  prompt: string;
+  workdir: string;
+  code_files: CodeFile[];
+};
+
+// 代码文件类型
+export type CodeFile = {
+  path: string;
+  content: string;
+};
+
+// AI 代码生成响应类型
+export type CodeGenerationResponse = {
+  success: boolean;
+  task_id?: string;
+  data?: GeneratedProject;
+  error?: string;
 };

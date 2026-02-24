@@ -5,6 +5,7 @@ import { useAuth } from '@/app/hooks/useAuth';
 import { useParams } from 'next/navigation';
 import { Button } from '@/app/components/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/app/components/Card';
+import { AIDialogue } from '@/app/components/AIDialogue';
 
 export default function ProjectDetailPage() {
   const { user } = useAuth();
@@ -197,7 +198,7 @@ export default function ProjectDetailPage() {
 
       {/* 主要内容 */}
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* 左侧面板：项目信息和文件树 */}
           <div className="lg:col-span-1 space-y-6">
             {/* 项目信息卡片 */}
@@ -245,6 +246,18 @@ export default function ProjectDetailPage() {
                     </div>
                   ))}
                 </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* 中间面板：AI 对话界面 */}
+          <div className="lg:col-span-1">
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle>AI 对话</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0 h-[800px]">
+                <AIDialogue projectId={projectId} />
               </CardContent>
             </Card>
           </div>
