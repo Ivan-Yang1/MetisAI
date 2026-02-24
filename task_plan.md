@@ -16,8 +16,8 @@
 | 3. 核心API开发 | `completed` | 开发基础API路由，实现数据库操作，配置认证中间件 |
 | 4. 前端核心功能 | `completed` | 创建登录页面，仪表盘，基础项目管理功能 |
 | 5. AI功能集成 | `completed` | 配置MetaGPT，封装API，实现AI对话界面 |
-| 6. 沙箱与预览 | `in_progress` | 集成Sandpack，实现沙箱预览界面 |
-| 7. 核心功能验证 | `pending` | 配置Vercel，执行核心功能测试 |
+| 6. 沙箱与预览 | `completed` | 集成Sandpack，实现沙箱预览界面 |
+| 7. 核心功能验证 | `completed` | 配置Vercel，执行核心功能测试 |
 | 8. 优化提升阶段 | `pending` | 性能优化，用户体验改进，高级功能增强 |
 | 9. 最终验证与交付 | `pending` | 最终功能测试，错误处理，文档更新 |
 
@@ -78,9 +78,9 @@
 ### Phase 7: 核心功能验证
 | Task | Status | Description | Time Estimate |
 |------|--------|-------------|---------------|
-| 7.1 配置Vercel | `pending` | 在Vercel创建项目，配置环境变量 | 1 hour |
-| 7.2 核心功能测试 | `pending` | 测试核心功能是否正常运行 | 2 hours |
-| 7.3 集成测试 | `pending` | 测试MetaGPT生成代码到沙箱同步的完整流程 | 1.5 hours |
+| 7.1 配置Vercel | `completed` | 在Vercel创建项目，配置环境变量 | 1 hour |
+| 7.2 核心功能测试 | `completed` | 测试核心功能是否正常运行 | 2 hours |
+| 7.3 集成测试 | `completed` | 测试MetaGPT生成代码到沙箱同步的完整流程 | 1.5 hours |
 
 ### Phase 8: 优化提升阶段
 | Task | Status | Description | Time Estimate |

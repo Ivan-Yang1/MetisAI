@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "framework": "nextjs",
+  "regions": ["all"],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": {
+      "description": "Supabase URL",
+      "required": true
+    },
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": {
+      "description": "Supabase Anon Key",
+      "required": true
+    },
+    "NODE_ENV": {
+      "description": "Node environment",
+      "required": false,
+      "default": "production"
+    }
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "ignore": [
+      "node_modules",
+      "*.log",
+      "*.md",
+      ".git"
+    ]
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/dashboard" }
+  ]
+}
