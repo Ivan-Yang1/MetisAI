@@ -117,77 +117,77 @@ CREATE TRIGGER trigger_update_code_generation_tasks_updated_at
 -- 为用户表启用 RLS（Row Level Security）
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view their own data" ON users
-    FOR SELECT USING (auth.uid()::TEXT = id);
+    FOR SELECT USING (auth.uid() = id);
 CREATE POLICY "Users can update their own data" ON users
-    FOR UPDATE USING (auth.uid()::TEXT = id);
+    FOR UPDATE USING (auth.uid() = id);
 
 -- 为项目表启用 RLS
 ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view their own projects" ON projects
-    FOR SELECT USING (auth.uid()::TEXT = user_id);
+    FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can create projects" ON projects
-    FOR INSERT WITH CHECK (auth.uid()::TEXT = user_id);
+    FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Users can update their own projects" ON projects
-    FOR UPDATE USING (auth.uid()::TEXT = user_id);
+    FOR UPDATE USING (auth.uid() = user_id);
 CREATE POLICY "Users can delete their own projects" ON projects
-    FOR DELETE USING (auth.uid()::TEXT = user_id);
+    FOR DELETE USING (auth.uid() = user_id);
 
 -- 为文件表启用 RLS
 ALTER TABLE files ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view files in their projects" ON files
     FOR SELECT USING (
-        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid())
     );
 CREATE POLICY "Users can create files in their projects" ON files
     FOR INSERT WITH CHECK (
-        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid())
     );
 CREATE POLICY "Users can update files in their projects" ON files
     FOR UPDATE USING (
-        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid())
     );
 CREATE POLICY "Users can delete files in their projects" ON files
     FOR DELETE USING (
-        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM projects WHERE id = project_id AND user_id = auth.uid())
     );
 
 -- 为对话表启用 RLS
 ALTER TABLE conversations ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view their own conversations" ON conversations
-    FOR SELECT USING (auth.uid()::TEXT = user_id);
+    FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can create conversations" ON conversations
-    FOR INSERT WITH CHECK (auth.uid()::TEXT = user_id);
+    FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Users can update their own conversations" ON conversations
-    FOR UPDATE USING (auth.uid()::TEXT = user_id);
+    FOR UPDATE USING (auth.uid() = user_id);
 CREATE POLICY "Users can delete their own conversations" ON conversations
-    FOR DELETE USING (auth.uid()::TEXT = user_id);
+    FOR DELETE USING (auth.uid() = user_id);
 
 -- 为消息表启用 RLS
 ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view messages in their conversations" ON messages
     FOR SELECT USING (
-        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid())
     );
 CREATE POLICY "Users can create messages in their conversations" ON messages
     FOR INSERT WITH CHECK (
-        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid())
     );
 CREATE POLICY "Users can update their own messages" ON messages
     FOR UPDATE USING (
-        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid())
     );
 CREATE POLICY "Users can delete their own messages" ON messages
     FOR DELETE USING (
-        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid()::TEXT)
+        EXISTS (SELECT 1 FROM conversations WHERE id = conversation_id AND user_id = auth.uid())
     );
 
 -- 为代码生成任务表启用 RLS
 ALTER TABLE code_generation_tasks ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view their own code generation tasks" ON code_generation_tasks
-    FOR SELECT USING (auth.uid()::TEXT = user_id);
+    FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can create code generation tasks" ON code_generation_tasks
-    FOR INSERT WITH CHECK (auth.uid()::TEXT = user_id);
+    FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Users can update their own code generation tasks" ON code_generation_tasks
-    FOR UPDATE USING (auth.uid()::TEXT = user_id);
+    FOR UPDATE USING (auth.uid() = user_id);
 CREATE POLICY "Users can delete their own code generation tasks" ON code_generation_tasks
-    FOR DELETE USING (auth.uid()::TEXT = user_id);
+    FOR DELETE USING (auth.uid() = user_id);

@@ -39,7 +39,7 @@
 |------|--------|-------------|---------------|
 | 2.1 创建Supabase项目 | `blocked` | 需要在Supabase控制台手动创建项目，配置数据库 | 30 minutes |
 | 2.2 设计数据模型 | `completed` | 设计用户、项目、文件、对话等核心数据模型 | 1.5 hours |
-| 2.3 执行SQL迁移 | `completed` | 编写SQL迁移脚本，创建表结构和关系 | 2 hours |
+| 2.3 执行SQL迁移 | `completed` | 编写SQL迁移脚本，创建表结构和关系（已修复类型转换问题） | 2 hours |
 | 2.4 配置认证 | `blocked` | 需要在Supabase控制台手动配置认证，设置JWT密钥和RLS策略 | 1 hour |
 
 ### Phase 3: 核心API开发
