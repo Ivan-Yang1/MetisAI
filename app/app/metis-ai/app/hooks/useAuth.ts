@@ -15,6 +15,7 @@ export function useAuth() {
         if (error) {
           console.error('Error checking user:', error);
           setUser(null);
+          setLoading(false);
           return;
         }
 
@@ -29,6 +30,7 @@ export function useAuth() {
           if (userError) {
             console.error('Error fetching user data:', userError);
             setUser(null);
+            setLoading(false);
             return;
           }
 
@@ -36,10 +38,10 @@ export function useAuth() {
         } else {
           setUser(null);
         }
+        setLoading(false);
       } catch (error) {
         console.error('Error checking authentication:', error);
         setUser(null);
-      } finally {
         setLoading(false);
       }
     };
@@ -60,6 +62,7 @@ export function useAuth() {
           if (userError) {
             console.error('Error fetching user data:', userError);
             setUser(null);
+            setLoading(false);
             return;
           }
 

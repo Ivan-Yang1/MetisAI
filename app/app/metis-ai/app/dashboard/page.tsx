@@ -8,6 +8,26 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/app/comp
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
+
+  // 如果用户未登录，显示登录提示
+  if (!user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+            请先登录
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-8">
+            您需要登录才能访问仪表盘。
+          </p>
+          <Button onClick={() => window.location.href = '/auth'}>
+            去登录
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   const { projects, loading, createProject, deleteProject } = useProjects(user?.id || null);
   const [isCreatingProject, setIsCreatingProject] = useState(false);
   const [newProjectName, setNewProjectName] = useState('');
