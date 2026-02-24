@@ -16,7 +16,7 @@
 | 3. 核心API开发 | `completed` | 开发基础API路由，实现数据库操作，配置认证中间件 |
 | 4. 前端核心功能 | `completed` | 创建登录页面，仪表盘，基础项目管理功能 |
 | 5. AI功能集成 | `completed` | 配置MetaGPT，封装API，实现AI对话界面 |
-| 6. 沙箱与预览 | `pending` | 集成Sandpack，实现沙箱预览界面 |
+| 6. 沙箱与预览 | `in_progress` | 集成Sandpack，实现沙箱预览界面 |
 | 7. 核心功能验证 | `pending` | 配置Vercel，执行核心功能测试 |
 | 8. 优化提升阶段 | `pending` | 性能优化，用户体验改进，高级功能增强 |
 | 9. 最终验证与交付 | `pending` | 最终功能测试，错误处理，文档更新 |
@@ -69,7 +69,7 @@
 ### Phase 6: 沙箱与预览
 | Task | Status | Description | Time Estimate |
 |------|--------|-------------|---------------|
-| 6.1 集成Sandpack | `pending` | 安装和配置Sandpack库 | 1 hour |
+| 6.1 集成Sandpack | `completed` | 安装和配置Sandpack库 | 1 hour |
 | 6.2 沙箱预览界面 | `pending` | 实现右侧沙箱预览界面 | 2.5 hours |
 | 6.3 文件同步 | `pending` | 实现MetaGPT生成代码到Sandpack沙箱的实时同步机制，包括文件结构更新和代码内容同步 | 2 hours |
 | 6.4 MetaGPT-沙箱集成 | `pending` | 实现MetaGPT生成代码到沙箱的自动同步机制 | 2 hours |
