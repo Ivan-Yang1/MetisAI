@@ -29,22 +29,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (data?.user) {
-      // 创建用户记录
-      const { error: userError } = await supabase.from('users').insert({
-        id: data.user.id,
-        email,
-        name,
-      });
-
-      if (userError) {
-        return NextResponse.json(
-          { error: userError.message },
-          { status: 400 }
-        );
-      }
-    }
-
     // 成功注册，返回用户信息
     return NextResponse.json({
       success: true,

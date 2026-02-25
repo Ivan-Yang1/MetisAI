@@ -136,17 +136,6 @@ export function useAuth() {
       }
 
       if (data?.user) {
-        // 创建用户记录
-        const { error: userError } = await supabase.from('users').insert({
-          id: data.user.id,
-          email,
-          name,
-        });
-
-        if (userError) {
-          throw userError;
-        }
-
         setUser({
           id: data.user.id,
           email,
